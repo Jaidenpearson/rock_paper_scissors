@@ -13,23 +13,29 @@ function playRound(playerSelection, computerSelection) {
     computerSelection = computerPlay().toLowerCase();
     playerSelection = playerSelection.toLowerCase();
     if( playerSelection === computerSelection) {
-        console.log("Tie game!")
+        console.log(`Tie game! ${playerScore} - ${computerScore}`)
     } else if(
         (playerSelection == "rock" && computerSelection == "scissors") ||
         (playerSelection == "paper" && computerSelection == "rock") ||
         (playerSelection == "scissors" && computerSelection == "paper")
-    ){ 
-        playerScore = ++playerScore;
+    ){
+        playerScore = ++playerScore
+        console.log(`You win! ${playerScore} - ${computerScore}.`)
+        return playerScore;
+    } else if(
+        (playerSelection == "rock" && computerSelection == "paper") ||
+        (playerSelection == "paper" && computerSelection == "scissors") ||
+        (playerSelection == "scissors" && computerSelection == "rock")
+    ){
+        computerScore = ++computerScore;
+        console.log(`You lose! ${playerScore} - ${computerScore}.`);
+        return computerScore;
     }
-    else( 
-        computerScore = ++computerScore);
-    if(++playerScore) {
-        console.log("You won!")
-    } else if(++computerScore) {
-        console.log("You lost!")
-    } else(console.log("You tied"))
 }
 
-function displayResults() {
-    console.log(playerScore, computerScore);
+function gameOver(){
+    if(playerScore === 5 || computerScore === 5){
+        console.log("Game over!");
+        return playerScore == 0 || computerScore == 0;
+    }
 }
